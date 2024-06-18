@@ -2,6 +2,7 @@ version: '3'
 services:
   wp:
     image: wordpress:latest
+    container_name: wp-web
     restart: always
     ports:
       - "8080:80"
@@ -17,6 +18,7 @@ services:
       - ./wp_data:/var/www/html
   db:
     image: mysql:5.7
+    container_name: wp-db
     restart: always
     volumes:
       - ./db_data:/var/lib/mysql
@@ -27,6 +29,7 @@ services:
       MYSQL_PASSWORD: wordpress
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
+    container_name: wp-pma
     environment:
       PMA_HOST: db
       MYSQL_ROOT_PASSWORD: wordpress
